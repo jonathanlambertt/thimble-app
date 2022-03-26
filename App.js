@@ -7,7 +7,7 @@ import { Provider as AuthProvider } from "./src/contexts/authentication/AuthCont
 import { createStackNavigator } from "@react-navigation/stack";
 import SplashScreen from "./src/screens/SplashScreen";
 import * as SecureStore from "expo-secure-store";
-import TestScreen from "./src/screens/TestScreen";
+import TabBar from "./src/navigations/tabbar/TabBar";
 
 const Stack = createStackNavigator();
 
@@ -16,14 +16,12 @@ const RootStack = () => {
 
   useEffect(() => {
     const fetchToken = async () => {
-      try {
-        token = await SecureStore.getItemAsync("token");
-        if (token) {
-          logIn(token);
-        } else {
-          setIsLoading(false);
-        }
-      } catch (error) {}
+      let token = await SecureStore.getItemAsync("token");
+      if (token) {
+        logIn(token);
+      } else {
+        setIsLoading(false);
+      }
     };
 
     fetchToken();
@@ -41,7 +39,11 @@ const RootStack = () => {
             options={{ headerShown: false }}
           />
         ) : (
-          <Stack.Screen name="Test" component={TestScreen} />
+          <Stack.Screen
+            name="TabBar"
+            component={TabBar}
+            options={{ headerShown: false }}
+          />
         )}
       </Stack.Navigator>
     );

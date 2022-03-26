@@ -6,6 +6,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   StyleSheet,
+  TouchableOpacity,
 } from "react-native";
 import { useFonts } from "expo-font";
 import FormField from "../../components/atoms/FormField";
@@ -76,6 +77,14 @@ const LoginScreen = () => {
                 titleStyle={{ fontSize: 17, fontWeight: "600" }}
                 loading={isSending}
               />
+            </View>
+            <View style={{ flexDirection: "row", marginTop: 15 }}>
+              <Text style={{ fontWeight: "600" }}>Don't have an account?</Text>
+              <TouchableOpacity style={{ marginLeft: 3 }}>
+                <Text style={{ fontWeight: "600", color: "#ff878a" }}>
+                  Sign up
+                </Text>
+              </TouchableOpacity>
             </View>
           </View>
         </TouchableWithoutFeedback>

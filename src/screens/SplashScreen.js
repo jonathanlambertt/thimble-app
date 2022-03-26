@@ -1,11 +1,7 @@
-import { View, Text } from "react-native";
+import { View } from "react-native";
 
 const SplashScreen = () => {
-  return (
-    <View>
-      <Text>Loading</Text>
-    </View>
-  );
+  return <View style={{ backgroundColor: "#ff878a" }}></View>;
 };
 
 export default SplashScreen;
