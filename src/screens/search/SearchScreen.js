@@ -1,43 +1,93 @@
 import React, { useState, useEffect } from "react";
-import { SafeAreaView, FlatList, Text } from "react-native";
+import {
+  SafeAreaView,
+  FlatList,
+  Text,
+  StyleSheet,
+  ActivityIndicator,
+} from "react-native";
 import Search from "../../components/atoms/Search";
 import thimble from "../../api/thimble";
+import UserInfo from "../../components/atoms/UserInfo";
 
 const SearchScreen = () => {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
+  const [showNoResultsText, setShowNoResultsText] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const search = async () => {
     try {
+      setIsLoading(true);
       const response = await thimble.get(`u/search/${query.trim()}`);
-      setResults(response.data);
+      showResults(response.data);
     } catch (error) {}
   };
 
-  useEffect(() => {
-    const delayDebounceFn = setTimeout(() => {
-      if (query && query.trim() != "") {
-        search();
-      } else {
-      }
-    }, 250);
+  const showResults = (results) => {
+    setIsLoading(false);
+    if (results.length != 0) {
+      setResults(results);
+    } else {
+      setResults([]);
+      setShowNoResultsText(true);
+    }
+  };
 
-    return () => clearTimeout(delayDebounceFn);
+  useEffect(() => {
+    if (!query || query.trim() == "") {
+      setResults([]);
+      setShowNoResultsText(false);
+    } else {
+      const delayDebounceFn = setTimeout(() => {
+        search();
+      }, 250);
+      return () => clearTimeout(delayDebounceFn);
+    }
   }, [query]);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
       <Search query={query} setQuery={setQuery} />
-      <FlatList
-        data={results}
-        keyExtractor={(result) => result.profile.uuid}
-        renderItem={({ item }) => {
-          return <Text>{item.profile.user}</Text>;
-        }}
-        ListEmptyComponent={<Text>No results found.</Text>}
-      />
+      {isLoading ? (
+        <ActivityIndicator
+          size="large"
+          color="#a6a3ff"
+          style={{ marginTop: 10 }}
+        />
+      ) : (
+        <FlatList
+          data={results}
+          keyExtractor={(result) => result.profile.uuid}
+          renderItem={({ item }) => {
+            return (
+              <UserInfo
+                profilePhotoUrl={item.profile.profile_picture}
+                username={item.profile.user}
+                fullName={item.profile.full_name}
+              />
+            );
+          }}
+          ListEmptyComponent={
+            <>
+              {showNoResultsText ? (
+                <Text style={styles.noResults}>No results found.</Text>
+              ) : null}
+            </>
+          }
+        />
+      )}
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  noResults: {
+    textAlign: "center",
+    fontSize: 16,
+    marginTop: 5,
+    marginTop: 10,
+  },
+});
 
 export default SearchScreen;

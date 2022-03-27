@@ -1,4 +1,5 @@
 import { SearchBar } from "react-native-elements";
+import { Ionicons } from "@expo/vector-icons";
 
 const Search = ({ query, setQuery }) => {
   return (
@@ -11,6 +12,8 @@ const Search = ({ query, setQuery }) => {
       lightTheme={true}
       selectionColor="#ff878a"
       round
+      autoCapitalize="none"
+      autoCorrect={false}
       inputContainerStyle={{ backgroundColor: "#e9e9e9" }}
       inputStyle={{ color: "#000" }}
       containerStyle={{
@@ -18,6 +21,7 @@ const Search = ({ query, setQuery }) => {
         borderBottomWidth: 0,
         borderTopWidth: 0,
       }}
+      searchIcon={<Ionicons name="search" size={20} color="grey" />}
     />
   );
 };

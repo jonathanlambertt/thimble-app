@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5,
   },
   loginButton: {
-    backgroundColor: "#A6A3FF",
+    backgroundColor: "#a6a3ff",
     padding: 10,
     marginTop: 5,
   },
