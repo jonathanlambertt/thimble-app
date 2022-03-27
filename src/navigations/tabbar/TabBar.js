@@ -1,11 +1,11 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import SearchStack from "../search/SearchStack";
-import TestScreen from "../../screens/TestScreen";
 import { useFonts } from "expo-font";
 import { createIconSetFromIcoMoon } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
 const tabIconSize = 29;
+const NewPostTabPlaceholder = () => {};
 
 const Icon = createIconSetFromIcoMoon(
   require("../../../assets/icomoon/selection.json"),
@@ -28,7 +28,6 @@ const TabBar = () => {
           tabBarActiveTintColor: "#333",
           tabBarInactiveTintColor: "#a9a9a9",
           tabBarIcon: ({ focused, color }) => {
-            // Search tab icon
             if (route.name == "SearchTab") {
               if (focused) {
                 return (
@@ -44,6 +43,9 @@ const TabBar = () => {
                 );
               }
             }
+            if (route.name == "NewPostTab") {
+              return <Icon name="add2" color="#ff878a" size={41} />;
+            }
           },
         })}
       >
@@ -52,7 +54,16 @@ const TabBar = () => {
           component={SearchStack}
           options={{ headerShown: false }}
         />
-        <Tab.Screen name="Test" component={TestScreen} />
+        <Tab.Screen
+          name="NewPostTab"
+          component={NewPostTabPlaceholder}
+          listeners={({ navigation }) => ({
+            tabPress: (e) => {
+              e.preventDefault();
+              navigation.navigate("NewPost");
+            },
+          })}
+        />
       </Tab.Navigator>
     );
   }

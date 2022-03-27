@@ -4,10 +4,14 @@ import { NavigationContainer } from "@react-navigation/native";
 import AuthStack from "./src/navigations/authentication/AuthStack";
 import { Context as AuthContext } from "./src/contexts/authentication/AuthContext";
 import { Provider as AuthProvider } from "./src/contexts/authentication/AuthContext";
-import { createStackNavigator } from "@react-navigation/stack";
+import {
+  createStackNavigator,
+  CardStyleInterpolators,
+} from "@react-navigation/stack";
 import SplashScreen from "./src/screens/SplashScreen";
 import * as SecureStore from "expo-secure-store";
 import TabBar from "./src/navigations/tabbar/TabBar";
+import TestScreen from "./src/screens/TestScreen";
 
 const Stack = createStackNavigator();
 
@@ -39,11 +43,22 @@ const RootStack = () => {
             options={{ headerShown: false }}
           />
         ) : (
-          <Stack.Screen
-            name="TabBar"
-            component={TabBar}
-            options={{ headerShown: false }}
-          />
+          <>
+            <Stack.Screen
+              name="TabBar"
+              component={TabBar}
+              options={{ headerShown: false }}
+            />
+            {/* CardStyleInterpolators is for Full Screen modal */}
+            <Stack.Group
+              screenOptions={{
+                presentation: "modal",
+                cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
+              }}
+            >
+              <Stack.Screen name="NewPost" component={TestScreen} />
+            </Stack.Group>
+          </>
         )}
       </Stack.Navigator>
     );
