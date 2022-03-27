@@ -6,7 +6,11 @@ const Stack = createStackNavigator();
 const SearchStack = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Search" component={SearchScreen} />
+      <Stack.Screen
+        name="Search"
+        component={SearchScreen}
+        options={{ headerShown: false }}
+      />
     </Stack.Navigator>
   );
 };
