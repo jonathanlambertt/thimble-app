@@ -1,7 +1,9 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import SearchStack from "../search/SearchStack";
 import { useFonts } from "expo-font";
 import { createIconSetFromIcoMoon } from "@expo/vector-icons";
+
+import SearchStack from "../search/SearchStack";
+import FeedStack from "../feed/FeedStack";
 
 const Tab = createBottomTabNavigator();
 const tabIconSize = 29;
@@ -27,6 +29,7 @@ const TabBar = () => {
           tabBarShowLabel: false,
           tabBarActiveTintColor: "#333",
           tabBarInactiveTintColor: "#a9a9a9",
+          tabBarStyle: { borderTopWidth: 0 },
           tabBarIcon: ({ focused, color }) => {
             if (route.name == "SearchTab") {
               if (focused) {
@@ -43,12 +46,30 @@ const TabBar = () => {
                 );
               }
             }
+            if (route.name == "FeedTab") {
+              if (focused) {
+                return <Icon name="home2-fill" size={tabIconSize} />;
+              } else {
+                return (
+                  <Icon
+                    name="home2-outline"
+                    size={tabIconSize}
+                    style={{ color: color }}
+                  />
+                );
+              }
+            }
             if (route.name == "NewPostTab") {
               return <Icon name="add2" color="#ff878a" size={41} />;
             }
           },
         })}
       >
+        <Tab.Screen
+          name="FeedTab"
+          component={FeedStack}
+          options={{ headerShown: false }}
+        />
         <Tab.Screen
           name="SearchTab"
           component={SearchStack}
