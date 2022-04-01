@@ -5,7 +5,7 @@ const UserInfo = ({ profilePhotoUrl, username, fullName }) => {
   return (
     <View style={{ flexDirection: "row", alignItems: "center" }}>
       <ProfilePhoto url={profilePhotoUrl} />
-      <View style={{ marginLeft: 12 }}>
+      <View style={{ marginLeft: 14 }}>
         <Text style={{ fontSize: 15, fontWeight: "500" }}>{username}</Text>
         {fullName ? <Text style={styles.fullName}>{fullName}</Text> : null}
       </View>

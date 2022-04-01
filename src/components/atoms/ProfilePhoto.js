@@ -9,7 +9,7 @@ const ProfilePhoto = ({ url }) => {
           containerStyle={styles.container}
           rounded
           icon={{ name: "user", type: "feather", color: "#333" }}
-          size={55}
+          size={52}
           source={{
             uri: url,
           }}
@@ -19,7 +19,7 @@ const ProfilePhoto = ({ url }) => {
           containerStyle={styles.container}
           rounded
           icon={{ name: "user", type: "feather", color: "#333" }}
-          size={55}
+          size={52}
         />
       )}
     </>

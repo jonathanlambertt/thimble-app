@@ -14,7 +14,7 @@ const authReducer = (state, action) => {
   }
 };
 
-const logIn = (dispatch) => async (token) => {
+const logIn = (dispatch) => (token) => {
   dispatch({ type: "login", payload: token });
 };
 

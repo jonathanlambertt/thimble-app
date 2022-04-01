@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import Search from "../../components/atoms/Search";
 import thimble from "../../api/thimble";
-import UserInfo from "../../components/atoms/UserInfo";
+import SearchResult from "../../components/molecules/SearchResult";
 
 const SearchScreen = () => {
   const [query, setQuery] = useState("");
@@ -52,7 +52,7 @@ const SearchScreen = () => {
       {isLoading ? (
         <ActivityIndicator
           size="large"
-          color="#a6a3ff"
+          color="#9f9f9f"
           style={{ marginTop: 10 }}
         />
       ) : (
@@ -60,13 +60,7 @@ const SearchScreen = () => {
           data={results}
           keyExtractor={(result) => result.profile.uuid}
           renderItem={({ item }) => {
-            return (
-              <UserInfo
-                profilePhotoUrl={item.profile.profile_picture}
-                username={item.profile.user}
-                fullName={item.profile.full_name}
-              />
-            );
+            return <SearchResult result={item} />;
           }}
           ListEmptyComponent={
             <>
