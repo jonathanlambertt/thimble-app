@@ -1,5 +1,5 @@
 import { View, StyleSheet, Text } from "react-native";
-import UserInfo from "../atoms/UserInfo";
+import UserInfo from "../molecules/UserInfo";
 import AddFriendButton from "../atoms/AddFriendButton";
 
 const SearchResult = ({ result }) => {

@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet } from "react-native";
-import ProfilePhoto from "./ProfilePhoto";
+import ProfilePhoto from "../atoms/ProfilePhoto";
 
 const UserInfo = ({ profilePhotoUrl, username, fullName }) => {
   return (

@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import Search from "../../components/atoms/Search";
 import thimble from "../../api/thimble";
-import SearchResult from "../../components/molecules/SearchResult";
+import SearchResult from "../../components/organisms/SearchResult";
 
 const SearchScreen = () => {
   const [query, setQuery] = useState("");
