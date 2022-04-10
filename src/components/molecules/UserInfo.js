@@ -4,7 +4,7 @@ import ProfilePhoto from "../atoms/ProfilePhoto";
 const UserInfo = ({ profilePhotoUrl, username, fullName }) => {
   return (
     <View style={{ flexDirection: "row", alignItems: "center" }}>
-      <ProfilePhoto url={profilePhotoUrl} />
+      <ProfilePhoto url={profilePhotoUrl} size={52} />
       <View style={{ marginLeft: 14 }}>
         <Text style={{ fontSize: 14, fontWeight: "500" }}>{username}</Text>
         {fullName ? <Text style={styles.fullName}>{fullName}</Text> : null}

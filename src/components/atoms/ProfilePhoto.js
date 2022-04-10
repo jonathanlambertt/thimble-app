@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 import { Avatar } from "react-native-elements";
 
-const ProfilePhoto = ({ url }) => {
+const ProfilePhoto = ({ url, size }) => {
   return (
     <>
       {url ? (
@@ -9,7 +9,7 @@ const ProfilePhoto = ({ url }) => {
           containerStyle={styles.container}
           rounded
           icon={{ name: "user", type: "feather", color: "#333" }}
-          size={52}
+          size={size}
           source={{
             uri: url,
           }}
@@ -19,7 +19,7 @@ const ProfilePhoto = ({ url }) => {
           containerStyle={styles.container}
           rounded
           icon={{ name: "user", type: "feather", color: "#333" }}
-          size={52}
+          size={size}
         />
       )}
     </>
