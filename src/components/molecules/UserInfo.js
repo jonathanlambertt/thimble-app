@@ -6,7 +6,7 @@ const UserInfo = ({ profilePhotoUrl, username, fullName }) => {
     <View style={{ flexDirection: "row", alignItems: "center" }}>
       <ProfilePhoto url={profilePhotoUrl} />
       <View style={{ marginLeft: 14 }}>
-        <Text style={{ fontSize: 15, fontWeight: "500" }}>{username}</Text>
+        <Text style={{ fontSize: 14, fontWeight: "500" }}>{username}</Text>
         {fullName ? <Text style={styles.fullName}>{fullName}</Text> : null}
       </View>
     </View>
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   fullName: {
     marginTop: 1,
     color: "#9f9f9f",
-    fontSize: 15,
+    fontSize: 14,
   },
 });
 
