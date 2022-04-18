@@ -19,6 +19,14 @@ module.exports = () => {
         shareURL: "https://www.thimbleapp.co/p/",
       },
     };
+  } else if (process.env.APP_ENV === "sim") {
+    return {
+      ...config,
+      extra: {
+        baseURL: "http://127.0.0.1:8000/v1/",
+        shareURL: "http://127.0.0.1:8000/p/",
+      },
+    };
   } else {
     return {
       ...config,
