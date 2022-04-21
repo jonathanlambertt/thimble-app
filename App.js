@@ -18,16 +18,16 @@ const Stack = createStackNavigator();
 const RootStack = () => {
   const { state, logIn, setIsLoading } = useContext(AuthContext);
 
-  useEffect(() => {
-    const fetchToken = async () => {
-      let token = await SecureStore.getItemAsync("token");
-      if (token) {
-        logIn(token);
-      } else {
-        setIsLoading(false);
-      }
-    };
+  const fetchToken = async () => {
+    let token = await SecureStore.getItemAsync("token");
+    if (token) {
+      logIn(token);
+    } else {
+      setIsLoading(false);
+    }
+  };
 
+  useEffect(() => {
     fetchToken();
   }, []);
 
