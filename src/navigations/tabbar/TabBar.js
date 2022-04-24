@@ -1,9 +1,11 @@
+import { View } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useFonts } from "expo-font";
 import { createIconSetFromIcoMoon } from "@expo/vector-icons";
 
 import SearchStack from "../search/SearchStack";
 import FeedStack from "../feed/FeedStack";
+import GroupStack from "../groups/GroupStack";
 
 const Tab = createBottomTabNavigator();
 const tabIconSize = 29;
@@ -29,7 +31,6 @@ const TabBar = () => {
           tabBarShowLabel: false,
           tabBarActiveTintColor: "#333",
           tabBarInactiveTintColor: "#a9a9a9",
-          tabBarStyle: { borderTopWidth: 0 },
           tabBarIcon: ({ focused, color }) => {
             if (route.name == "SearchTab") {
               if (focused) {
@@ -62,6 +63,25 @@ const TabBar = () => {
             if (route.name == "NewPostTab") {
               return <Icon name="add2" color="#ff878a" size={41} />;
             }
+            if (route.name == "GroupsTab") {
+              if (focused) {
+                return (
+                  <View style={{ marginTop: 7 }}>
+                    <Icon name="groups2-fill" size={45} />
+                  </View>
+                );
+              } else {
+                return (
+                  <View style={{ marginTop: 7 }}>
+                    <Icon
+                      name="groups2-outline"
+                      size={45}
+                      style={{ color: color }}
+                    />
+                  </View>
+                );
+              }
+            }
           },
         })}
       >
@@ -84,6 +104,11 @@ const TabBar = () => {
               navigation.navigate("NewPost");
             },
           })}
+        />
+        <Tab.Screen
+          name="GroupsTab"
+          component={GroupStack}
+          options={{ headerShown: false }}
         />
       </Tab.Navigator>
     );

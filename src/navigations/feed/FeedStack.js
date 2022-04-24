@@ -21,7 +21,7 @@ const FeedStack = ({ navigation }) => {
                 name="bell"
                 size={26}
                 color="black"
-                style={{ marginRight: 20 }}
+                style={{ marginRight: 15 }}
               />
             </TouchableOpacity>
           ),
@@ -37,7 +37,7 @@ const FeedStack = ({ navigation }) => {
               name="arrowleft"
               size={24}
               color="black"
-              style={{ marginLeft: 17 }}
+              style={{ marginLeft: 15 }}
             />
           ),
         }}
